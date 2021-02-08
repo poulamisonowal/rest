@@ -15,7 +15,7 @@ public class Brands {
 	@GET
 	@Path("/brands")
 	@Produces(MediaType.TEXT_PLAIN)
-	public List<Brands> getBrands() {
+	public List<BrandsEntity> getBrands() {
 		List<Brands> list  = new BrandsService().getBrands();
 		return list;
 	}
@@ -86,7 +86,7 @@ import java.util.List;
 
 public class BrandsService {
 
-	public List<Brands> getBrands() {
+	public List<BrandsEntity> getBrands() {
 		// TODO Auto-generated method stub
 		return null;
 	}
