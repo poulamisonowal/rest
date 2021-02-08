@@ -79,6 +79,12 @@ public class Brands {
 		service.updateBrand(updatedBrand);
 	}
   
+	@DELETE
+	@Path("/brands/{brandId}")
+	@Consumes(MediaType.TEXT_PLAIN)
+	public void deleteBrands(@PathParam("brandId") int brandId) {
+		service.deleteBrand(brandId);
+	}
   
   edit BrandsService
   import java.util.List;
@@ -114,13 +120,7 @@ public class BrandsService {
 
 	
   
-	@DELETE
-	@Path("/brands/{brandId}")
-	@Consumes(MediaType.TEXT_PLAIN)
-	public void deleteBrands(@PathParam("brandId") int brandId) {
-		service.deleteBrand(brandId);
-	}
 
-}
+
 
 
