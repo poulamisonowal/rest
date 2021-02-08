@@ -1,0 +1,60 @@
+Configuration
+
+Create a maven app
+
+
+
+
+
+Add web.xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This web.xml file is not required when using Servlet 3.0 container,
+     see implementation details http://jersey.java.net/nonav/documentation/latest/jax-rs.html -->
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <servlet>
+        <servlet-name>Jersey Web Application</servlet-name>
+        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+        <init-param>
+            <param-name>jersey.config.server.provider.packages</param-name>
+            <param-value>mvc.jersey1</param-value>
+        </init-param>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Jersey Web Application</servlet-name>
+        <url-pattern>/*</url-pattern>
+    </servlet-mapping>
+</web-app>
+Create REstController
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+
+@Path("/showroom")
+public class Brands {
+	@GET
+	@Path("/brands")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String getBrands() {
+		return "list of brands";
+	}
+
+	@POST
+	@Path("/brands")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String postBrands() {
+		return "Add a new brand";
+	}
+	
+	@PUT
+	@Path("/brands/{brandId}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String putBrands(@PathParam("brandId")  int brandId) {
+		return "update brand info with ID "+brandId;
+	}
+	
+	@DELETE
+	@Path("/brands/{brandId}")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String deleteBrands(@PathParam("brandId") int brandId) {
+		return "delete brand from db with ID "+brandId;
+	}
